@@ -16,6 +16,8 @@ export class ReviewController {
     await this.reviewService.delete(uuid);
   }
 
-  @Get('by-product/:productId')
-  async getByProduct(@Param('productId') productUuid: string) {}
+  @Get('by-product/:uuid')
+  async getByProduct(@Param('uuid') uuid: string) {
+    await this.reviewService.getByProduct(uuid);
+  }
 }

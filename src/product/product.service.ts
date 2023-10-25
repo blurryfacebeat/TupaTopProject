@@ -3,6 +3,7 @@ import { Repository } from 'typeorm';
 import { ProductEntity } from './entities/product.entity';
 import { getEntityNotFoundError } from '../utils/get-errors';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CreateProductDto } from './dto/create-product.dto';
 
 @Injectable()
 export class ProductService {
@@ -10,6 +11,8 @@ export class ProductService {
     @InjectRepository(ProductEntity)
     private readonly productRepository: Repository<ProductEntity>,
   ) {}
+
+  async create(dto: CreateProductDto) {}
 
   async findOne(uuid: string) {
     const product = await this.productRepository.findOne({

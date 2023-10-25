@@ -40,4 +40,16 @@ export class ReviewService {
 
     return this.reviewRepository.delete(uuid);
   }
+
+  async getByProduct(uuid: string) {
+    await this.productService.findOne(uuid);
+
+    return await this.reviewRepository.find({
+      where: {
+        product: {
+          uuid,
+        },
+      },
+    });
+  }
 }
