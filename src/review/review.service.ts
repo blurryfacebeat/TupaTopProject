@@ -41,7 +41,7 @@ export class ReviewService {
     return this.reviewRepository.delete(uuid);
   }
 
-  async getByProduct(uuid: string) {
+  async findByProductUuid(uuid: string) {
     await this.productService.findOne(uuid);
 
     return await this.reviewRepository.find({

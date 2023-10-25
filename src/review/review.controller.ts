@@ -17,7 +17,7 @@ export class ReviewController {
   }
 
   @Get('by-product/:uuid')
-  async getByProduct(@Param('uuid') uuid: string) {
-    await this.reviewService.getByProduct(uuid);
+  async findByProductUuid(@Param('uuid') uuid: string) {
+    await this.reviewService.findByProductUuid(uuid);
   }
 }
