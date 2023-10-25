@@ -11,14 +11,14 @@ import {
 } from '@nestjs/common';
 import { FindProductDto } from './dto/find-product.dto';
 import { ProductEntity } from './entities/product.entity';
+import { ProductService } from './product.service';
 
 @Controller('product')
 export class ProductController {
+  constructor(private readonly productService: ProductService) {}
+
   @Post('create')
   async create(@Body() dto: Omit<ProductEntity, 'id'>) {}
-
-  @Get(':id')
-  async get(@Param('id') id: string) {}
 
   @Delete(':id')
   async delete(@Param('id') id: string) {}
@@ -29,4 +29,9 @@ export class ProductController {
   @HttpCode(HttpStatus.OK)
   @Post()
   async find(@Body() dto: FindProductDto) {}
+
+  @Get(':uuid')
+  async findOne(@Param('uuid') uuid: string) {
+    await this.productService.findOne(uuid);
+  }
 }
