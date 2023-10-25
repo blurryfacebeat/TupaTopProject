@@ -19,10 +19,6 @@ export class ReviewService {
 
     const product = await this.productService.findOne(productUuid);
 
-    if (!product) {
-      throw new NotFoundException(getEntityNotFoundError('Product'));
-    }
-
     const review = await this.reviewRepository.create({
       ...reviewData,
       product,
