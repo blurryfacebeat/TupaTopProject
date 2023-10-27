@@ -23,8 +23,10 @@ export class ProductController {
     return this.productService.create(dto);
   }
 
-  @Delete(':id')
-  async delete(@Param('id') id: string) {}
+  @Delete(':uuid')
+  async delete(@Param('uuid') uuid: string) {
+    await this.productService.delete();
+  }
 
   @Patch(':id')
   async patch(@Param('id') id: string, @Body() dto: ProductEntity) {}
