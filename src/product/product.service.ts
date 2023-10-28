@@ -14,7 +14,7 @@ export class ProductService {
 
   async create(dto: CreateProductDto) {}
 
-  async delete() {}
+  async delete(uuid: string) {}
 
   async findOne(uuid: string) {
     const product = await this.productRepository.findOne({

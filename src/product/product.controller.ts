@@ -25,7 +25,7 @@ export class ProductController {
 
   @Delete(':uuid')
   async delete(@Param('uuid') uuid: string) {
-    await this.productService.delete();
+    await this.productService.delete(uuid);
   }
 
   @Patch(':id')
