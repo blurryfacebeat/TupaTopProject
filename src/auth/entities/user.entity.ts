@@ -1,13 +1,12 @@
-import { Column, Entity, Generated, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseTimestampEntity } from '../../utils/base-timestamp-entity';
 
 @Entity()
 export class UserEntity extends BaseTimestampEntity {
-  @Column('uuid')
-  @Generated('uuid')
+  @PrimaryGeneratedColumn('uuid')
   uuid: string;
 
-  @PrimaryColumn({ unique: true })
+  @Column({ unique: true })
   email: string;
 
   @Column()

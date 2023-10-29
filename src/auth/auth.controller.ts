@@ -14,13 +14,16 @@ import { AuthService } from './auth.service';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('registration')
   @UsePipes(new ValidationPipe())
+  @Post('register')
   async register(@Body() dto: AuthDto) {
-    await this.authService.createUser(dto);
+    return this.authService.createUser(dto);
   }
 
+  @UsePipes(new ValidationPipe())
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  async login(@Body() dto: AuthDto) {}
+  async login(@Body() dto: AuthDto) {
+    return this.authService.login(dto);
+  }
 }
