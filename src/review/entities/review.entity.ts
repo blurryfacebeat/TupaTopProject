@@ -23,7 +23,7 @@ export class ReviewEntity extends BaseTimestampEntity {
   description: string;
 
   @Column()
-  rating: string;
+  rating: number;
 
   @ManyToOne(() => ProductEntity, ({ reviews }) => reviews)
   @JoinColumn({ name: 'product_uuid' })

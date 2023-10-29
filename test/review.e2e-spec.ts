@@ -11,7 +11,7 @@ const testDto: CreateReviewDto = {
   name: 'Тест',
   title: 'Заголовок',
   description: 'Описание',
-  rating: '5',
+  rating: 5,
   productUuid,
 };
 
