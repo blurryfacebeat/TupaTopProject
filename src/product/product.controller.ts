@@ -3,40 +3,49 @@ import {
   Controller,
   Delete,
   Get,
-  HttpCode,
-  HttpStatus,
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
-import { FindProductDto } from './dto/find-product.dto';
-import { ProductEntity } from './entities/product.entity';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
+import { DeleteResult, UpdateResult } from 'typeorm';
+import { ProductEntity } from './entities/product.entity';
+import { UpdateProductDto } from './dto/update-product.dto';
 
 @Controller('product')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Post('create')
-  async create(@Body() dto: CreateProductDto) {
+  async create(@Body() dto: CreateProductDto): Promise<ProductEntity> {
     return this.productService.create(dto);
   }
 
   @Delete(':uuid')
-  async delete(@Param('uuid') uuid: string) {
-    await this.productService.delete(uuid);
+  async delete(@Param('uuid') uuid: string): Promise<DeleteResult> {
+    return this.productService.delete(uuid);
   }
 
-  @Patch(':id')
-  async patch(@Param('id') id: string, @Body() dto: ProductEntity) {}
+  @Patch(':uuid')
+  async patch(
+    @Param('uuid') uuid: string,
+    @Body() dto: UpdateProductDto,
+  ): Promise<UpdateResult> {
+    return this.productService.patch(uuid, dto);
+  }
 
-  @HttpCode(HttpStatus.OK)
-  @Post()
-  async find(@Body() dto: FindProductDto) {}
+  @Get()
+  async find(
+    @Query('category') category: string,
+    @Query('limit') limit: number = 10,
+  ): Promise<ProductEntity[]> {
+    return this.productService.find(category, +limit);
+  }
 
   @Get(':uuid')
-  async findOne(@Param('uuid') uuid: string) {
-    await this.productService.findOne(uuid);
+  async findOne(@Param('uuid') uuid: string): Promise<ProductEntity> {
+    return this.productService.findOne(uuid);
   }
 }

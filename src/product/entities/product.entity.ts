@@ -24,14 +24,11 @@ export class ProductEntity extends BaseTimestampEntity {
   @Column()
   price: number;
 
-  @Column()
+  @Column({ nullable: true })
   oldPrice: number;
 
   @Column()
   credit: number;
-
-  @Column()
-  averageRating: number;
 
   @Column()
   description: string;
