@@ -7,6 +7,8 @@ import {
   Patch,
   Post,
   Query,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -18,7 +20,8 @@ import { UpdateProductDto } from './dto/update-product.dto';
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
-  @Post('create')
+  @UsePipes(ValidationPipe)
+  @Post()
   async create(@Body() dto: CreateProductDto): Promise<ProductEntity> {
     return this.productService.create(dto);
   }
@@ -28,6 +31,7 @@ export class ProductController {
     return this.productService.delete(uuid);
   }
 
+  @UsePipes(ValidationPipe)
   @Patch(':uuid')
   async patch(
     @Param('uuid') uuid: string,
