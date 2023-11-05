@@ -56,7 +56,7 @@ export class TopPageEntity extends BaseTimestampEntity {
   @Column('simple-json')
   hh?: HhData;
 
-  @Column('simple-array')
+  @Column('jsonb')
   advantages: TopPageAdvantage[];
 
   @Column()
