@@ -24,7 +24,7 @@ export class ReviewService {
       product,
     });
 
-    return await this.reviewRepository.save(review);
+    return this.reviewRepository.save(review);
   }
 
   async delete(uuid: string) {
@@ -44,7 +44,7 @@ export class ReviewService {
   async findByProductUuid(uuid: string) {
     await this.productService.findOne(uuid);
 
-    return await this.reviewRepository.find({
+    return this.reviewRepository.find({
       where: {
         product: {
           uuid,

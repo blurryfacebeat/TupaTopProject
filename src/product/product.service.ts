@@ -25,9 +25,8 @@ export class ProductService {
     return this.productRepository.delete(uuid);
   }
 
-  // TODO Сделать расчеты среднего рейтинга и количества отзывов
   async find(category: string, limit: number): Promise<ProductEntity[]> {
-    return this.productRepository.find({
+    return await this.productRepository.find({
       where: {
         categories: category,
       },

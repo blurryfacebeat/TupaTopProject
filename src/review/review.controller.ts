@@ -21,18 +21,18 @@ export class ReviewController {
   @Post()
   @UsePipes(new ValidationPipe())
   async create(@Body() dto: CreateReviewDto) {
-    await this.reviewService.create(dto);
+    return this.reviewService.create(dto);
   }
 
   @UseGuards(JwtAuthGuard)
   @Delete(':uuid')
   async delete(@Param('uuid') uuid: string) {
-    await this.reviewService.delete(uuid);
+    return this.reviewService.delete(uuid);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('by-product/:uuid')
   async findByProductUuid(@Param('uuid') uuid: string) {
-    await this.reviewService.findByProductUuid(uuid);
+    return this.reviewService.findByProductUuid(uuid);
   }
 }
