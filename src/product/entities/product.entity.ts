@@ -48,8 +48,6 @@ export class ProductEntity extends BaseTimestampEntity {
   @Column('jsonb')
   characteristics: ProductCharacteristic[];
 
-  @OneToMany(() => ReviewEntity, ({ product }) => product, {
-    onDelete: 'CASCADE',
-  })
+  @OneToMany(() => ReviewEntity, ({ product }) => product)
   reviews: ReviewEntity[];
 }

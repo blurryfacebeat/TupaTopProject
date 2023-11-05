@@ -25,7 +25,9 @@ export class ReviewEntity extends BaseTimestampEntity {
   @Column()
   rating: number;
 
-  @ManyToOne(() => ProductEntity, ({ reviews }) => reviews)
+  @ManyToOne(() => ProductEntity, ({ reviews }) => reviews, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'product_uuid' })
   product: ProductEntity;
 }
