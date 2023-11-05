@@ -45,7 +45,7 @@ export class ProductEntity extends BaseTimestampEntity {
   @Column('simple-array')
   tags: string[];
 
-  @Column('simple-array')
+  @Column('jsonb')
   characteristics: ProductCharacteristic[];
 
   @OneToMany(() => ReviewEntity, ({ product }) => product, {
